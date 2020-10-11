@@ -142,11 +142,18 @@
 								<h2>About Me</h2>
 							</header>
 
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-
 							<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-				  <textarea style="width:800px; height:300px; maxlength="10">HTML5</textarea><br/>
+<div id="container">  
+<div>    
+<p><br />      
+<textarea name="word_count" id="word_count" cols="30" rows="6"></textarea>
+</p>    
+<p>  
+<span style="color:#FF0000">  Кол-во введенных Вами слов : <span id="display_count">0</span></span>        
+</p>  
+</div>
+</div>
 						</div>
 					</section>
 
@@ -199,6 +206,21 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		<script type="text/javascript">
+jQuery.fn.wordCount = function(params){	var p = {		
+counterElement:"display_count"	
+};	
+var total_words;		
+if(params) {		
+jQuery.extend(p, params);	
+}			
+this.keypress(function()	
+{ 		
+total_words=this.value.split(/[\s\.\?]+/).length;		
+jQuery('#'+p.counterElement).html(total_words);	
+});	
+};
+</script>
 
 	</body>
 </html>
