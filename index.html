@@ -147,12 +147,12 @@
 
 							<p>ну чо привет</p>
 
-<form id="form">
-Текст сюда
-<input type="text" name="name" value="" maxlength='50' style="width:200px;">  
-осталось <span id="name_coun">50</span> символов </form>
+
 							
-						</div>
+<textarea name="comment" id="comment" placeholder="Your Comment" maxlength="300" required/></textarea>
+<div id="lettersCount"></div>
+							
+							
 					</section>
 
 				<!-- Contact -->
@@ -207,21 +207,14 @@
 
 		
 		<script language="JavaScript" type="text/javascript">
+var letterLimit = 150; 
+var textarea = document.getElementById("comment");
 
-$(document).ready(function(){
-// вычисляем первоначальное значение счетчика и его цвет
-var value = $('#form input[name="name"]').attr('value') || '';
-var initLength = Math.max((value ? (50 - value.length) : 50),0);
-$('#name_coun').css('color', 'rgb('+(5*value.length)+', 0, 0)');
-$('#name_coun').html(initLength.toString());
- 
-$('#form input[name="name"]').keyup(function(){
-var value = $(this).attr('value') || '';
-var lengthToGo = Math.max((50 - value.length),0);
-$('#name_coun').css('color', 'rgb('+(5*value.length)+', 0, 0)');
-$('#name_coun').html(lengthToGo.toString());
-});
-});
+document.getElementById("lettersCount").innerHTML  = letterLimit;
+
+textarea.addEventListener('input', function() {
+  document.getElementById("lettersCount").innerHTML = letterLimit - textarea.value.length;
+}, false);
 
 </script>
 		
