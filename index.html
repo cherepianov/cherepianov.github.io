@@ -147,16 +147,11 @@
 
 							<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<div id="container">  
-<div>    
-<p><br />      
-<textarea name="word_count" id="word_count" cols="30" rows="6"></textarea>
-</p>    
-<p>  
-<span style="color:#FF0000">  Кол-во введенных Вами слов : <span id="display_count">0</span></span>        
-</p>  
-</div>
-</div>
+<form id="form">
+Текст сюда
+<input type="text" name="name" value="" maxlength='50' style="width:200px;">  
+осталось <span id="name_coun">50</span> символов </form>
+							
 						</div>
 					</section>
 
@@ -209,21 +204,27 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-		<script type="text/javascript">
-jQuery.fn.wordCount = function(params){	var p = {		
-counterElement:"display_count"	
-};	
-var total_words;		
-if(params) {		
-jQuery.extend(p, params);	
-}			
-this.keypress(function()	
-{ 		
-total_words=this.value.split(/[\s\.\?]+/).length;		
-jQuery('#'+p.counterElement).html(total_words);	
-});	
-};
+
+		
+		<script language="JavaScript" type="text/javascript">
+<!--
+$(document).ready(function(){
+// вычисляем первоначальное значение счетчика и его цвет
+var value = $('#form input[name="name"]').attr('value') || '';
+var initLength = Math.max((value ? (50 - value.length) : 50),0);
+$('#name_coun').css('color', 'rgb('+(5*value.length)+', 0, 0)');
+$('#name_coun').html(initLength.toString());
+ 
+$('#form input[name="name"]').keyup(function(){
+var value = $(this).attr('value') || '';
+var lengthToGo = Math.max((50 - value.length),0);
+$('#name_coun').css('color', 'rgb('+(5*value.length)+', 0, 0)');
+$('#name_coun').html(lengthToGo.toString());
+});
+});
+-->
 </script>
+		
 
 	</body>
 </html>
